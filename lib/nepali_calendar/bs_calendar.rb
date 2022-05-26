@@ -54,6 +54,68 @@ module NepaliCalendar
       NepaliCalendar::BsCalendar.travel days, date
     end
 
+
+
+
+      # Returns the bs date that is the beginning of the provided fiscal_year.
+      def self.beginning_of_fiscal_year_in_bs(fiscal_year)
+        start_year = fiscal_year.to_s.slice(0, 2).prepend('20')
+        start_date = NepaliCalendar::Calendar.new(nil, {year: start_year, month: 4, day: 1}) #start date of fiscal year
+      end
+
+
+      # Returns the bs date that is the end of the provided fiscal_year.
+      def self.end_of_fiscal_year_in_bs(fiscal_year)
+        end_year = fiscal_year.to_s.slice(2, 2).prepend('20')
+        end_date =  NepaliCalendar::Calendar.new(nil, {year: end_year, month: 3, day: NepaliCalendar::BS[end_year.to_i][2]}) #end date of fiscal year
+      end
+
+
+      # Returns the ad date that is the beginning of the provided fiscal_year.
+      def self.beginning_of_fiscal_year_in_ad(fiscal_year)
+        bs_start_date= beginning_of_fiscal_year_in_bs(fiscal_year)
+        NepaliCalendar::AdCalendar.bs_to_ad(bs_start_date.year, bs_start_date.month, bs_start_date.day) #stard date in AD of the corresponding nepali date
+      end
+
+      # Returns the ad date that is the end of the provided fiscal_year.
+      def self.end_of_fiscal_year_in_ad(fiscal_year)
+        ad_end_date = end_of_fiscal_year_in_bs(fiscal_year)
+        NepaliCalendar::AdCalendar.bs_to_ad(ad_end_date.year, ad_end_date.month, ad_end_date.day)  #end date in AD of the fiscal year
+      end
+
+      # Returns the fiscal year represented as a string in the form of 7778.
+      def self.fiscal_year_for_bs_date(bs_year, bs_month, bs_day) # (2079, 2, 12) ==> 7879
+        if bs_month < 4  #compare with start date of nepali fiscal year to determine the fiscal year
+          fiscal_year = (bs_year - 1).to_s.slice(2,2).to_s + bs_year.to_s.slice(2,2).to_s
+        else
+          fiscal_year = bs_year.to_s.slice(2,2).to_s + (bs_year + 1).to_s.slice(2,2).to_s
+        end
+      end
+
+      # [date] -> This is a Date object (and obviously represents AD date)
+      # Returns the fiscal year represented as a string in the form of 7778.
+      def self.fiscal_year_for_ad_date(date)
+        bs_date = BsCalendar.ad_to_bs(date.year.to_s, date.month.to_s, date.day.to_s)
+        if bs_date.month < 4
+          fiscal_year = ((bs_date.year - 1).to_s.slice(2,2)).to_s + bs_date.year.to_s.slice(2,2).to_s
+        else
+          fiscal_year =bs_date.year.to_s.slice(2,2).to_s + ((bs_date.year + 1).to_s.slice(2,2)).to_s
+        end
+
+      end
+
+      # Returns the current fiscal year represented as a string in the form of 7778.
+      def self.current_fiscal_year
+        current_year = NepaliCalendar::BsCalendar.ad_to_bs(Date.today.year, Date.today.month, Date.today.day)
+        if current_year.month < 4
+          fiscal_year = (current_year.year-1).to_s.slice(2,2) + current_year.year.to_s.slice(2,2)
+        else
+          fiscal_year = current_year.year.to_s.slice(2,2) + (current_year.year+1).to_s.slice(2,2)
+        end
+      end
+
+
+
     private
 
       def self.travel days, option = {}
@@ -148,5 +210,8 @@ module NepaliCalendar
           start_date.end_of_month.end_of_week
         ]
       end
+
+
+      
   end
 end

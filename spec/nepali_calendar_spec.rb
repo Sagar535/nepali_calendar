@@ -103,6 +103,57 @@ describe NepaliCalendar do
       d1 = NepaliCalendar::BsCalendar.ad_to_bs(2015, 10, 20).end_of_month
       expect(d1.class).to eq(NepaliCalendar::BsCalendar)
     end
+
+    it 'returns bs date that is the beginning of the fiscal year' do
+      bs_date = NepaliCalendar::BsCalendar.beginning_of_fiscal_year_in_bs('7778')
+      
+      expect(bs_date.year.to_i).to eq(2077)
+      expect(bs_date.month.to_i).to eq(4)
+      expect(bs_date.day.to_i).to eq(1)
+    end
+
+    it 'returns the bs date that is the end of the fiscal year' do
+      bs_date = NepaliCalendar::BsCalendar.end_of_fiscal_year_in_bs('7778')
+      expect(bs_date.year.to_i).to eq(2078)
+      expect(bs_date.month.to_i).to eq(3)
+      expect(bs_date.day.to_i).to eq(31)
+    end
+
+    it 'returns the AD date that is the beginning of provided fiscal year' do
+      ad_date = NepaliCalendar::BsCalendar.beginning_of_fiscal_year_in_ad('7778')
+      expect(ad_date.year.to_i).to eq(2020)
+      expect(ad_date.month.to_i).to eq(7)
+      expect(ad_date.day.to_i).to eq(16)
+    end
+
+    it 'returns the AD date that is the end of provided fiscal year' do
+      ad_date = NepaliCalendar::BsCalendar.end_of_fiscal_year_in_ad('7778')
+      expect(ad_date.year.to_i).to eq(2021)
+      expect(ad_date.month.to_i).to eq(7)
+      expect(ad_date.day.to_i).to eq(15)
+    end
+
+    it 'returns the fiscal year represented as a string' do
+      fiscal_year = NepaliCalendar::BsCalendar.fiscal_year_for_bs_date(2077, 04, 01)
+      expect(fiscal_year.to_i).to eq(7778)
+    end
+
+    it 'returns the fiscal year represented as a string from date object(AD)' do
+      fiscal_year = NepaliCalendar::BsCalendar.fiscal_year_for_ad_date(("20210505").to_date)
+      expect(fiscal_year.to_i).to eq(7778)
+    end
+
+    it 'returns the current fiscal year represented as a string from date object(AD)' do
+      fiscal_year = NepaliCalendar::BsCalendar.current_fiscal_year
+      expect(fiscal_year.to_i).to eq(7879)
+    end
+
+    
+
+
+
+
+
   end
 
   context '#AdCalendar' do

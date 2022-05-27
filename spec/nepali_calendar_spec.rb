@@ -136,11 +136,15 @@ describe NepaliCalendar do
     it 'returns the fiscal year represented as a string' do
       fiscal_year = NepaliCalendar::BsCalendar.fiscal_year_for_bs_date(2077, 04, 01)
       expect(fiscal_year.to_i).to eq(7778)
+      fiscal_year = NepaliCalendar::BsCalendar.fiscal_year_for_bs_date(2077, 03, 30)
+      expect(fiscal_year.to_i).to eq(7677)
     end
 
     it 'returns the fiscal year represented as a string from date object(AD)' do
-      fiscal_year = NepaliCalendar::BsCalendar.fiscal_year_for_ad_date(("20210505").to_date)
+      fiscal_year = NepaliCalendar::BsCalendar.fiscal_year_for_ad_date(("20210715").to_date)
       expect(fiscal_year.to_i).to eq(7778)
+      fiscal_year = NepaliCalendar::BsCalendar.fiscal_year_for_ad_date(("20210716").to_date)
+      expect(fiscal_year.to_i).to eq(7879)
     end
 
     it 'returns the current fiscal year represented as a string from date object(AD)' do

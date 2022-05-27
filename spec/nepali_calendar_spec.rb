@@ -144,6 +144,7 @@ describe NepaliCalendar do
     end
 
     it 'returns the current fiscal year represented as a string from date object(AD)' do
+      allow(Date).to receive(:today).and_return(Date.new(2022, 5, 26))
       fiscal_year = NepaliCalendar::BsCalendar.current_fiscal_year
       expect(fiscal_year.to_i).to eq(7879)
     end

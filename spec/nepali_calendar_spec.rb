@@ -148,13 +148,6 @@ describe NepaliCalendar do
       fiscal_year = NepaliCalendar::BsCalendar.current_fiscal_year
       expect(fiscal_year.to_i).to eq(7879)
     end
-
-    
-
-
-
-
-
   end
 
   context '#AdCalendar' do

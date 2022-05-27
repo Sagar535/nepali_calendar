@@ -54,9 +54,6 @@ module NepaliCalendar
       NepaliCalendar::BsCalendar.travel days, date
     end
 
-
-
-
       # Returns the bs date that is the beginning of the provided fiscal_year.
       def self.beginning_of_fiscal_year_in_bs(fiscal_year)
         start_year = fiscal_year.to_s.slice(0, 2).prepend('20')
@@ -113,8 +110,6 @@ module NepaliCalendar
           fiscal_year = current_year.year.to_s.slice(2,2) + (current_year.year+1).to_s.slice(2,2)
         end
       end
-
-
 
     private
 

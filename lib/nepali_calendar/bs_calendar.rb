@@ -64,7 +64,7 @@ module NepaliCalendar
       # Returns the bs date that is the end of the provided fiscal_year.
       def self.end_of_fiscal_year_in_bs(fiscal_year)
         end_year = fiscal_year.to_s.slice(2, 2).prepend('20')
-        end_date =  NepaliCalendar::Calendar.new(nil, {year: end_year, month: 3, day: NepaliCalendar::BS[end_year.to_i][2]}) #end date of fiscal year
+        end_date = NepaliCalendar::Calendar.new(nil, {year: end_year, month: 3, day: NepaliCalendar::BS[end_year.to_i][3]}) #end date of fiscal year
       end
 
 
@@ -108,6 +108,18 @@ module NepaliCalendar
           fiscal_year = (current_year.year-1).to_s.slice(2,2) + current_year.year.to_s.slice(2,2)
         else
           fiscal_year = current_year.year.to_s.slice(2,2) + (current_year.year+1).to_s.slice(2,2)
+        end
+      end
+
+
+      def self.get_fiscal_year(bs_date)
+        year = bs_date.slice(0,4).to_i
+        month = bs_date.slice(4, 2).to_i
+        day = bs_date.slice(6, 2).to_i
+        if month < 4  #compare with start date of nepali fiscal year to determine the fiscal year
+          fiscal_year = (year - 1).to_s.slice(2,2).to_s + year.to_s.slice(2,2).to_s
+        else
+          fiscal_year = year.to_s.slice(2,2) + (year + 1).to_s.slice(2,2)
         end
       end
 
@@ -193,6 +205,7 @@ module NepaliCalendar
         date.blank? ? NepaliCalendar::BsCalendar.today : to_bs_date(date)
       end
 
+      # date = "2079-01-01"
       def to_bs_date(date)
         d = date.split('-').map(&:to_i)
         d = NepaliCalendar::AdCalendar.bs_to_ad(d[0], d[1], d[2])

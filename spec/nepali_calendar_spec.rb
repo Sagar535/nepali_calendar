@@ -213,4 +213,10 @@ describe NepaliCalendar do
 
   end
 
+  # context '#FiscalYear' do
+  #   it 'returns beginning of FY year in BS' do
+  #     start_date = NepaliCalendar::FiscalYear.beginning_of_year
+  #     expect(start_date).to eq('04, 01, 2078')
+  #   end
+  # end
 end

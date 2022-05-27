@@ -9,14 +9,17 @@ class NepaliCalendar::FiscalYear < NepaliCalendar::Calendar
         
         # Should return_the_date in bs
     def beginning_of_year
+        NepaliCalendar::BsCalendar.beginning_of_fiscal_year_in_bs(start_year)
     end
         
         # Should return the date in bs
     def end_of_year
+        NepaliCalendar::BsCalendar.end_of_fiscal_year_in_bs(end_year)
     end
         
         # Should return the '7879' form of string.
     def to_s
+        start_year.to_s + end_year.to_s
     end
 
 end

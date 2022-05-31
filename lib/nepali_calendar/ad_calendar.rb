@@ -51,14 +51,7 @@ module NepaliCalendar
       formatted_date.end_of_month
     end
 
-    def self.get_fiscal_year(ad_date)
-      bs_date = NepaliCalendar::BsCalendar.ad_to_bs(ad_date.year.to_s, ad_date.month.to_s, ad_date.day.to_s)
-      if bs_date.month < 4
-        fiscal_year = ((ad_date.year - 1).to_s.slice(2,2)).to_s + ad_date.year.to_s.slice(2,2).to_s
-      else
-        fiscal_year =ad_date.year.to_s.slice(2,2).to_s + ((ad_date.year + 1).to_s.slice(2,2)).to_s
-      end
-    end
+
 
       private
 

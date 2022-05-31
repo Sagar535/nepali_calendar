@@ -60,15 +60,6 @@ module NepaliCalendar
       end
     end
 
-    # def self.current_fiscal_year
-    #   current_year = NepaliCalendar::BsCalendar.ad_to_bs(Date.today.year, Date.today.month, Date.today.day)
-    #     if current_year.month < 4
-    #       fiscal_year = (Date.today.year-1).to_s.slice(2,2) + Date.today.year.to_s.slice(2,2)
-    #     else
-    #       fiscal_year = Date.today.year.to_s.slice(2,2) + (Date.today.year+1).to_s.slice(2,2)
-    #   end
-    # end
-
       private
 
         def self.travel(days)

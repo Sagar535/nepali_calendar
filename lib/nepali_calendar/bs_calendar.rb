@@ -69,19 +69,6 @@ module NepaliCalendar
         NepaliCalendar::FiscalYear.new(start_year, end_year).end_of_year
       end
 
-
-      # # Returns the ad date that is the beginning of the provided fiscal_year.
-      # def self.beginning_of_fiscal_year_in_ad(fiscal_year)
-      #   bs_start_date= beginning_of_fiscal_year_in_bs(fiscal_year)
-      #   NepaliCalendar::AdCalendar.bs_to_ad(bs_start_date.year, bs_start_date.month, bs_start_date.day) #stard date in AD of the corresponding nepali date
-      # end
-
-      # # Returns the ad date that is the end of the provided fiscal_year.
-      # def self.end_of_fiscal_year_in_ad(fiscal_year)
-      #   ad_end_date = end_of_fiscal_year_in_bs(fiscal_year)
-      #   NepaliCalendar::AdCalendar.bs_to_ad(ad_end_date.year, ad_end_date.month, ad_end_date.day)  #end date in AD of the fiscal year
-      # end
-
       # Returns the fiscal year represented as a string in the form of 7778.
       def self.fiscal_year_for_bs_date(bs_year, bs_month, bs_day) # (2079, 2, 12) ==> 7879
         if bs_month < 4  #compare with start date of nepali fiscal year to determine the fiscal year
@@ -102,17 +89,6 @@ module NepaliCalendar
         end
 
       end
-
-      # Returns the current fiscal year represented as a string in the form of 7778.
-      # def self.current_fiscal_year
-      #   current_year = NepaliCalendar::BsCalendar.ad_to_bs(Date.today.year, Date.today.month, Date.today.day)
-      #   if current_year.month < 4
-      #     fiscal_year = (current_year.year-1).to_s.slice(2,2) + current_year.year.to_s.slice(2,2)
-      #   else
-      #     fiscal_year = current_year.year.to_s.slice(2,2) + (current_year.year+1).to_s.slice(2,2)
-      #   end
-      # end
-
 
       def self.get_fiscal_year(bs_date)
         year = bs_date.slice(0,4).to_i

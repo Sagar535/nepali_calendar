@@ -19,7 +19,7 @@ class NepaliCalendar::FiscalYear
         NepaliCalendar::Calendar.new(nil, {year: end_year, month: 3, day: NepaliCalendar::BS[end_year.to_i][3]})
     end
 
-    def self.current_fiscal_year
+    def current_fiscal_year
       current_year = NepaliCalendar::BsCalendar.ad_to_bs(Date.today.year, Date.today.month, Date.today.day)
       if current_year.month < 4
         fiscal_year = (current_year.year-1).to_s.slice(2,2) + current_year.year.to_s.slice(2,2)

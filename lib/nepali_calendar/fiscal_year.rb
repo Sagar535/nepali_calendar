@@ -52,7 +52,7 @@ class NepaliCalendar::FiscalYear
 
     # [date] -> This is a Date object (and obviously represents AD date)
     # Returns the fiscal year represented as a string in the form of 7778.
-    def self.fiscal_year_for_ad_date(date)
+    def self.fiscal_year_in_bs_for_ad_date(date)
         bs_date = NepaliCalendar::BsCalendar.ad_to_bs(date.year.to_s, date.month.to_s, date.day.to_s)
         if bs_date.month < 4
           fiscal_year = ((bs_date.year - 1).to_s.slice(2,2)).to_s + bs_date.year.to_s.slice(2,2).to_s

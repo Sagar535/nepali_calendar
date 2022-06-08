@@ -165,6 +165,21 @@ describe NepaliCalendar do
   end
 
   context '#FiscalYear' do
+
+    it 'returns start of fiscal year date in BS' do
+      start_date = NepaliCalendar::FiscalYear.new(78,79).beginning_of_year
+      expect(start_date.year.to_s).to eq("2078")
+      expect(start_date.month.to_s).to eq("4")
+      expect(start_date.day.to_s).to eq("1")
+    end
+
+    it 'returns end of fiscal year date in BS' do
+      start_date = NepaliCalendar::FiscalYear.new(78,79).end_of_year
+      expect(start_date.year.to_s).to eq("2079")
+      expect(start_date.month.to_s).to eq("3")
+      expect(start_date.day.to_s).to eq("32")
+    end
+
     it 'returns fiscal year date in BS' do
       fiscal_year = NepaliCalendar::FiscalYear.fiscal_year_for_bs_date(2077, 4, 1)
       expect(fiscal_year.to_s).to eq("7778")

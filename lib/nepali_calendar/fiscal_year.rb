@@ -10,13 +10,13 @@ class NepaliCalendar::FiscalYear
   # returns start of fiscal year date in BS
   def beginning_of_year
     start_date = start_year.to_s.prepend('20')
-    NepaliCalendar::Calendar.new(nil, {year: start_date, month: 4, day: 1})
+    NepaliCalendar::BsCalendar.new(nil, {year: start_date, month: 4, day: 1})
   end
         
   # returns end of fiscal year date in BS
   def end_of_year
     end_date = end_year.to_s.prepend('20')
-    NepaliCalendar::Calendar.new(nil, {year: end_date, month: 3, day: NepaliCalendar::BS[end_date.to_i][3]})
+    NepaliCalendar::BsCalendar.new(nil, {year: end_date, month: 3, day: NepaliCalendar::BS[end_date.to_i][3]})
   end
 
   # returns fiscal year date in BS

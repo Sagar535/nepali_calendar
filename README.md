@@ -12,20 +12,17 @@ A Ruby gem for generating Nepali Calendar (Bikram Sambat Calendar). You can also
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'nepali_calendar'
+gem 'nepali_calendar', git: 'https://github.com/Daanphe/nepali_calendar.git', branch: 'master'
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install nepali_calendar
 
 ## Usage
 
-##### Rails 3/4
+##### Rails 6.1.0+
 Initialize Calendar Object in controller with:
 ```sh
 @cal = NepaliCalendar::Calendar.new
@@ -34,10 +31,29 @@ To convert date from AD to BS, copy the following code in the view file:
 ```sh
 <%= @cal.ad_to_bs('2015', '09', '10') %>
 ```
-
 To convert date from BS to AD, copy the following code:
 ```sh
 <%= @cal.bs_to_ad('2072', '05', '24') %>
+```
+To get beginning date of the Nepali Fiscal year
+```sh
+NepaliCalendar::FiscalYear.new(@start_year, @end_year).beginning_of_year
+```
+To get end date of the Nepali Fiscal year
+```sh
+NepaliCalendar::FiscalYear.new(@start_year, @end_year).end_of_year
+```
+To get Nepali Fiscal year from BS date
+```sh
+NepaliCalendar::FiscalYear.new(bs_year, bs_month, bs_day).fiscal_year_for_bs_date
+```
+To get Nepali Fiscal year from AD date object
+```sh
+NepaliCalendar::FiscalYear.new(date).fiscal_year_in_bs_for_ad_date
+```
+To get current Nepali Fiscal year
+```sh
+NepaliCalendar::FiscalYear.current_fiscal_year
 ```
 
 ## Contributing

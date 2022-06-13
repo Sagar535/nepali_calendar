@@ -9,7 +9,6 @@ This repo is a fork of https://github.com/lalusaud/nepali_calendar/. Since the o
 A Ruby gem for generating Nepali Calendar (Bikram Sambat Calendar). You can also convert dates between BS and AD. Nepali Calendar is based on the API from [codeartsnepal](http://sourceforge.net/projects/nepalidateconve/).
 
 ## Installation
-
 Add this line to your application's Gemfile:
 
 ```ruby
@@ -40,10 +39,15 @@ To create new BS date object:
 ```sh
 NepaliCalendar::BsCalendar.new(nil, { year: , month: , day:  })
 ```
+
 #### ADCalendar
 To convert date from BS to AD, copy the following code:
 ```sh
 <%= @cal.bs_to_ad('2072', '05', '24') %>
+```
+To create new AD date object:
+```sh
+NepaliCalendar::AdCalendar.new(nil, { year: , month: , day:  })
 ```
 
 #### FiscalYear
@@ -69,7 +73,6 @@ NepaliCalendar::FiscalYear.current_fiscal_year
 ```
 
 ## Contributing
-
 1. Fork it ( https://github.com/Daanphe/nepali_calendar.git )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)

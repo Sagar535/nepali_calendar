@@ -1,4 +1,5 @@
 # Nepali Calendar
+This repo is a fork of https://github.com/lalusaud/nepali_calendar/. Since the original repo wasn't being actively maintained, we took the liberty to add/fix functionalities
 
 [![Build Status](https://travis-ci.org/lalusaud/nepali_calendar.svg)](https://travis-ci.org/lalusaud/nepali_calendar)
 [![Gem Version](https://badge.fury.io/rb/nepali_calendar.svg)](http://badge.fury.io/rb/nepali_calendar)
@@ -24,17 +25,28 @@ And then execute:
 
 ##### Rails 6.1.0+
 Initialize Calendar Object in controller with:
+
+#### Calendar
 ```sh
 @cal = NepaliCalendar::Calendar.new
 ```
+
+#### BSCalendar
 To convert date from AD to BS, copy the following code in the view file:
 ```sh
 <%= @cal.ad_to_bs('2015', '09', '10') %>
 ```
+To create new BS date object:
+```sh
+NepaliCalendar::BsCalendar.new(nil, { year: , month: , day:  })
+```
+#### ADCalendar
 To convert date from BS to AD, copy the following code:
 ```sh
 <%= @cal.bs_to_ad('2072', '05', '24') %>
 ```
+
+#### FiscalYear
 To get beginning date of the Nepali Fiscal year
 ```sh
 NepaliCalendar::FiscalYear.new(@start_year, @end_year).beginning_of_year
@@ -58,7 +70,7 @@ NepaliCalendar::FiscalYear.current_fiscal_year
 
 ## Contributing
 
-1. Fork it ( https://github.com/lalusaud/nepali_calendar/fork )
+1. Fork it ( https://github.com/Daanphe/nepali_calendar.git )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

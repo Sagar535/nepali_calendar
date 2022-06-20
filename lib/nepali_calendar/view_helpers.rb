@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module NepaliCalendar
   module ViewHelpers
     def bs_calendar(options = {}, &block)

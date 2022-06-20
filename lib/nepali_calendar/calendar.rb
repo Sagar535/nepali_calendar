@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails'
 require 'byebug'
 require 'exceptions/exceptions'
@@ -40,8 +42,6 @@ module NepaliCalendar
     alias inspect readable_inspect
     alias to_s readable_inspect
 
-    private
-
     def date_range
       (start_date.beginning_of_month.beginning_of_week..(start_date.end_of_month.end_of_week))
     end
@@ -55,8 +55,9 @@ module NepaliCalendar
       days.to_i
     end
 
-    def self.total_days_for_bs(date_nep, reference_date) # ref = '2000/1/1'
-      ref_year, ref_month, ref_day = reference_date.split('/').map(&:to_i)
+    # ref = '2000/1/1'
+    def self.total_days_for_bs(date_nep, reference_date)
+      ref_year, ref_month, _ref_day = reference_date.split('/').map(&:to_i)
       nep_year, nep_month, nep_day = date_nep.split('/').map(&:to_i)
       temp_day = nep_day
       days = 0
@@ -77,13 +78,12 @@ module NepaliCalendar
                    else
                      NepaliCalendar::BS[nep_year][nep_month].to_i
                    end
-
       end
       days
     end
 
     def self.valid_date_input?(year, month, day)
-      [year.to_i, month.to_i, day.to_i].any? { |item| item > 0 }
+      [year.to_i, month.to_i, day.to_i].any? { |item| item.positive? }
     end
 
     def self.date_in_range?(date, reference_date)

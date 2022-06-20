@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module NepaliCalendar
   # Public: A basic class for mananging errors.
   # Inherits from StandardError (previously RuntimeError) as not all errors are
@@ -31,17 +33,14 @@ module NepaliCalendar
     attr_reader :code
 
     # Public: fallback if there is no response code on the object
-    NOCODE = 000
+    NOCODE = 0o00
 
     # Public: initialization of new error given a message and/or object
-    #
     # message  - a String detailing the error
     # response - a RestClient::Response object
-    #
     def initialize(message = nil, response = nil)
       @response = response
       @code = response.code || NOCODE
-
       begin
         api_message = JSON.parse(response.body)['message']
       rescue JSON::ParserError

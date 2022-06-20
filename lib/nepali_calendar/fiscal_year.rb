@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module NepaliCalendar
   class FiscalYear
     attr_accessor :start_year, :end_year

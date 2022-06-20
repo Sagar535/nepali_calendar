@@ -122,30 +122,31 @@ module NepaliCalendar
       option = { year: date[:year], month: date[:month], day: date[:day],
         wday: date[:wday], month_name: month_name, wday_name: wday_name }
         new('', option)
-      end
+    end
       
-      def self.get_ref_day_eng
-        Date.parse(ref_date['ad_to_bs']['ad'])
-      end
+    def self.get_ref_day_eng
+      Date.parse(ref_date['ad_to_bs']['ad'])
+    end
       
-      def start_date
-        date = view_context.params.fetch(:start_date, '')
-        date.blank? ? NepaliCalendar::BsCalendar.today : to_bs_date(date)
-      end
+    def start_date
+      date = view_context.params.fetch(:start_date, '')
+      date.blank? ? NepaliCalendar::BsCalendar.today : to_bs_date(date)
+    end
       
-      # date = "2079-01-01"
-      def to_bs_date(date)
-        d = date.split('-').map(&:to_i)
-        d = NepaliCalendar::AdCalendar.bs_to_ad(d[0], d[1], d[2])
-        NepaliCalendar::BsCalendar.ad_to_bs(d.year, d.month, d.day)
-      end
+    # date = "2079-01-01"
+    def to_bs_date(date)
+      d = date.split('-').map(&:to_i)
+      d = NepaliCalendar::AdCalendar.bs_to_ad(d[0], d[1], d[2])
+      NepaliCalendar::BsCalendar.ad_to_bs(d.year, d.month, d.day)
+    end
       
-      def date_range
-        [
-          start_date.beginning_of_month.beginning_of_week,
-          start_date.end_of_month.end_of_week
-        ]
-      end
+    def date_range
+      [
+        start_date.beginning_of_month.beginning_of_week,
+        start_date.end_of_month.end_of_week
+      ]
     end
   end
+end
+  
   

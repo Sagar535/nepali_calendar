@@ -26,49 +26,49 @@ And then execute:
 Initialize Calendar Object in controller with:
 
 #### Calendar
-```sh
+```ruby
 @cal = NepaliCalendar::Calendar.new
 ```
 
 #### BSCalendar
 To convert date from AD to BS, copy the following code in the view file:
-```sh
+```ruby
 <%= @cal.ad_to_bs('2015', '09', '10') %>
 ```
 To create new BS date object:
-```sh
+```ruby
 NepaliCalendar::BsCalendar.new(nil, { year: , month: , day:  })
 ```
 
 #### ADCalendar
 To convert date from BS to AD, copy the following code:
-```sh
+```ruby
 <%= @cal.bs_to_ad('2072', '05', '24') %>
 ```
 To create new AD date object:
-```sh
+```ruby
 NepaliCalendar::AdCalendar.new(nil, { year: , month: , day:  })
 ```
 
 #### FiscalYear
 To get beginning date of the Nepali Fiscal year
-```sh
+```ruby
 NepaliCalendar::FiscalYear.new(@start_year, @end_year).beginning_of_year
 ```
 To get end date of the Nepali Fiscal year
-```sh
+```ruby
 NepaliCalendar::FiscalYear.new(@start_year, @end_year).end_of_year
 ```
 To get Nepali Fiscal year from BS date
-```sh
+```ruby
 NepaliCalendar::FiscalYear.new(bs_year, bs_month, bs_day).fiscal_year_for_bs_date
 ```
 To get Nepali Fiscal year from AD date object
-```sh
+```ruby
 NepaliCalendar::FiscalYear.new(date).fiscal_year_in_bs_for_ad_date
 ```
 To get current Nepali Fiscal year
-```sh
+```ruby
 NepaliCalendar::FiscalYear.current_fiscal_year
 ```
 
